@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import apiCall from '../../../services/apiCall';
 
 export default class HomePage extends Component {
 
@@ -17,7 +16,7 @@ export default class HomePage extends Component {
       <>
         <div>
           <img src={this.state.image} value="changeImage" />
-          <button className="new">Get New Character</button>
+          <button className="new">Get NewCharacter</button>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div>
