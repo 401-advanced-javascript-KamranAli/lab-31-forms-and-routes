@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class HomePage extends Component {
+
+  static propTypes = {
+    random: PropTypes.string
+  }
 
   state = {
     image: ''
 
   }
 
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+  changeImage = () => {
+    const url = `http://last-airbender-api.herokuapp.com/api/v1/characters/${random}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({ image: json });
+      });
   }
 
   render() {
