@@ -9,7 +9,6 @@ export default class HomePage extends Component {
 
   state = {
     image: ''
-
   }
 
   changeImage = () => {
