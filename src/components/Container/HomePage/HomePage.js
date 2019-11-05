@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class HomePage extends Component {
 
   static propTypes = {
-    random: PropTypes.string
+    queries: PropTypes.string
   }
 
   state = {
@@ -12,7 +12,7 @@ export default class HomePage extends Component {
   }
 
   changeImage = () => {
-    const url = `http://last-airbender-api.herokuapp.com/api/v1/characters/${random}`;
+    const url = `http://last-airbender-api.herokuapp.com/api/v1/characters/${queries}`;
     return fetch(url)
       .then(response => response.json())
       .then(json => {
