@@ -10,7 +10,7 @@ const ListCard = ({ image, name, _id, handleCharacter }) => (
 
 ListCard.propTypes = {
   image: PropTypes.string.isRequired,
-  name: PropTypes.name.isRequired,
+  name: PropTypes.name,
   _id: PropTypes.object.isRequired,
   handleCharacter: PropTypes.func.isRequired
 };
