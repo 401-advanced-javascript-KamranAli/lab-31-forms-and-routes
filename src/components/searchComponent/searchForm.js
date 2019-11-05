@@ -11,9 +11,9 @@ const CharacterSearch = ({ handleSubmit, handleChange, searchQuery }) => {
 };
 
 CharacterSearch.propTypes = {
-  handleSubmit: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  searchQuery: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string,
 
 };
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import RandomCharacter from '../../randomCharacter/randomCharacter';
 import CharacterSearch from '../../searchComponent/searchForm';
 import apiCall from '../../../services/apiCall';
@@ -7,7 +6,8 @@ import apiCall from '../../../services/apiCall';
 export default class HomePage extends Component {
 
   state = {
-    image: ''
+    image: '',
+    searchForm: ''
   }
 
   componentDidMount() {
