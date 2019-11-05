@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListCard from '../../ListCard/ListCard';
+import ListCard from '../ListCard/ListCard';
 
 const List = ({ list }) => {
   const listElements = list.map(listItem => (
