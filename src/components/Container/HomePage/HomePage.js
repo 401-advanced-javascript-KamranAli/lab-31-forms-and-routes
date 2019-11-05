@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RandomCharacter from '../../randomCharacter/randomCharacter';
 import CharacterSearch from '../../searchComponent/searchForm';
+import apiCall from '../../../services/apiCall';
 
 export default class HomePage extends Component {
 
@@ -9,31 +10,51 @@ export default class HomePage extends Component {
     image: ''
   }
 
-  changeImage = () => {
-    const url = `http://last-airbender-api.herokuapp.com/api/v1/characters/${queries}`;
-    return fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({ image: json });
+  componentDidMount() {
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
       });
   }
 
-  render() {
-    return (
-      <>
-        <div>
-          <img src={this.state.image} value="changeImage" />
-          <button className="new">Get NewCharacter</button>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input type="text" name="query"></input>
-            <button className="search">Search for Character</button>
-          </div>
-        </form>
-      </>
-    );
+  handleSubmit = event => {
+    event.preventDefault();
+
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
+      });
   }
 
+  handleRandom = () => {
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
+      });
+  }
 
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  }
+
+  render() {
+
+    const randomCharacter = {
+      image: this.state.image,
+      handleRandom: this.handleRandom
+    };
+
+    const characterSearch = {
+      handleChange: this.handleChange,
+      handleSubmit: this.handleSubmit,
+      searchQuery: this.state.searchQuery
+    };
+
+    return (
+      <div>
+        <RandomCharacter {...randomCharacter} />
+        <CharacterSearch {...characterSearch} />
+      </div>
+    );
+  }
 }
