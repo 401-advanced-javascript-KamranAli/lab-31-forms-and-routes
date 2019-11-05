@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RandomCharacter from '../../randomCharacter/randomCharacter';
+import CharacterSearch from '../../searchComponent/searchForm';
 
 export default class HomePage extends Component {
-
-  static propTypes = {
-    queries: PropTypes.string
-  }
 
   state = {
     image: ''
