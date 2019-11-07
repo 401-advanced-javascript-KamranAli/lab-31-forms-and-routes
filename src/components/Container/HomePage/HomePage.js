@@ -1,11 +1,36 @@
 import React, { Component } from 'react';
+import RandomCharacter from '../../randomCharacter/randomCharacter';
+import CharacterSearch from '../../searchComponent/searchForm';
 import apiCall from '../../../services/apiCall';
 
 export default class HomePage extends Component {
 
   state = {
-    image: ''
+    image: '',
+    searchForm: ''
+  }
 
+  componentDidMount() {
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
+      });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
+      });
+  }
+
+  handleRandom = () => {
+    apiCall('random')
+      .then(([{ image }]) => {
+        this.setState({ image });
+      });
   }
 
   handleChange = ({ target }) => {
@@ -13,21 +38,23 @@ export default class HomePage extends Component {
   }
 
   render() {
+
+    const randomCharacter = {
+      image: this.state.image,
+      handleRandom: this.handleRandom
+    };
+
+    const characterSearch = {
+      handleChange: this.handleChange,
+      handleSubmit: this.handleSubmit,
+      searchQuery: this.state.searchQuery
+    };
+
     return (
-      <>
-        <div>
-          <img src={this.state.image} value="changeImage" />
-          <button className="new">Get New Character</button>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input type="text" name="query"></input>
-            <button className="search">Search for Character</button>
-          </div>
-        </form>
-      </>
+      <div>
+        <RandomCharacter {...randomCharacter} />
+        <CharacterSearch {...characterSearch} />
+      </div>
     );
   }
-
-
 }
